@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Automatización rápida y sencilla de la Evaluación Docente del SIIAU (UdeG).">
+    <title>SIIAU Auto-Evaluación | Script</title>
+    
+    <!-- Google Fonts: Outfit & Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Elementos decorativos de fondo (blur) -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="container">
+        <header class="hero">
+            <span class="badge">Script V2.0</span>
+            <h1>Automatiza tu Evaluación <span class="text-gradient">SIIAU</span></h1>
+            <p>Llena tus encuestas docentes en un solo clic con la máxima calificación y modalidad mixta. Sin instalaciones raras, directo en tu navegador.</p>
+        </header>
+
+        <main class="grid-layout">
+            <!-- Columna Izquierda: Video / Demostración -->
+            <section class="glass-card demo-section">
+                <h2>¿Cómo funciona?</h2>
+                <div class="video-wrapper">
+                    <iframe width="100%" src="https://www.youtube.com/embed/S9DdqTWOUhA" title="Demostración del Script" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="aspect-ratio: 16/9; display: block;"></iframe>
+                </div>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <p>Crea un nuevo marcador (favorito) en Brave o Chrome.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <p>Copia el código y pégalo como si fuera la URL del marcador.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <p>Entra a la encuesta del SIIAU y dale clic al marcador.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Columna Derecha: Código -->
+            <section class="glass-card code-section">
+                <div class="code-header">
+                    <div class="window-controls">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="filename">bookmarklet.js</span>
+                    <button id="copyBtn" class="copy-btn" aria-label="Copiar código">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span>Copiar</span>
+                    </button>
+                </div>
+                <div class="code-content">
+<pre><code id="codeBlock">javascript:(function(){let s=!1;function f(d){try{const e=d.querySelectorAll('select[name="respup"]');if(e.length>0){e.forEach(c=>{const n=c.getAttribute('pregunta');if(n==='16'||n==='17')c.value="0";else if(n==='18')c.value="1";else{let m=-1,x=1;for(let i=1;i<c.options.length;i++){let v=parseInt(c.options[i].value);if(!isNaN(v)&&v>m){m=v;x=i}}c.selectedIndex=x}c.dispatchEvent(new Event('change',{bubbles:!0}))});s=!0}}catch(err){}}function r(w){f(w.document);for(let i=0;i<w.frames.length;i++)r(w.frames[i])}r(window);if(!s)alert("No se encontró la encuesta.");else console.log("Llenada con éxito!");})();</code></pre>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Creado para uso académico. <br> Desarrollado con ❤️ para estudiantes de UdeG.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
